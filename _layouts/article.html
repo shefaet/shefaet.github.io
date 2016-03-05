@@ -1,0 +1,30 @@
+---
+layout: main
+---
+<article>
+<div class="title">{{ page.title }}</div>
+{% assign MAX_NOTES = 25 %}
+{% for i in (1..MAX_NOTES) %}
+    {{% if content contains 'class="sn"' %}}
+        {% assign id = "sn" | append: i %}
+        {% assign label = '<label class="margin-toggle sidenote-number" for="' | append: id | append: '"></label>' %}
+        {% assign input = '<input type="checkbox" class="margin-toggle" id="'  | append: id | append: '"/>' %}
+        {% assign replacement = label | append: input | append: '<span class="sidenote"' %}
+        {% assign content = content | replace_first: '<span class="sn"', replacement %}
+    {% else %}
+        {% break %}
+    {{% endif %}}
+{% endfor %}
+{% for i in (1..MAX_NOTES) %}
+    {{% if content contains 'class="mn"' %}}
+        {% assign id = "mn" | append: i %}
+        {% assign label = '<label class="margin-toggle" for="' | append: id | append: '">&#8853;</label>' %}
+        {% assign input = '<input type="checkbox" class="margin-toggle" id="'  | append: id | append: '"/>' %}
+        {% assign replacement = label | append: input | append: '<span class="marginnote"' %}
+        {% assign content = content | replace_first: '<span class="mn"', replacement %}
+    {% else %}
+        {% break %}
+    {{% endif %}}
+{% endfor %}
+{{ content }}
+</article>

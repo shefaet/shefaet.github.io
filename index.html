@@ -1,0 +1,17 @@
+---
+layout: main
+title: Notes on Learning from Data
+---
+
+<nav>
+<div class="title">Contents</div>
+{% for section in site.data.sections %}
+  <h1><span class="numeral">{{ forloop.index }}.&nbsp;</span> {{ section }}</h1>
+  {% assign section_articles = (site.articles | where: "section", section) %}
+  <ul>
+    {% for article in section_articles %}
+      <li><a href="{{ article.url | prepend: site.baseurl }}">{{ article.title }}</a></li>
+    {% endfor %}
+  </ul>
+{% endfor %}
+</nav>

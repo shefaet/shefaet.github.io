@@ -1,0 +1,29 @@
+# Site settings
+title: Notes on Learning from Data
+author: Shefaet Rahman
+email: shefaet@gmail.com
+description: Introductory notes on various topics in machine learning.
+url: http://shefaet.github.io
+baseurl: ""
+permalink: /:title/
+
+# Collections
+collections:
+  articles:
+    output: true
+    permalink: articles/:title/
+
+# Defaults
+defaults:
+  -
+    scope:
+      path: ""
+      type: articles
+    values:
+      layout: article
+
+# Build settings
+exclude: ["Gemfile", "Gemfile.lock", "Makefile"]
+markdown: kramdown
+compress_html:
+  blanklines: true
